@@ -64,7 +64,7 @@ function validateDateNotATuesday(req, res, next) {
     return next({
       status: 400,
       message:
-        'Reservation cannot be made. Restaurant is closed on every Tuesday.',
+        'Restaurant is closed on every Tuesday. Reservation cannot be made.',
     });
   }
   return next();

@@ -64,7 +64,7 @@ function validateDateNotATuesday(req, res, next) {
     return next({
       status: 400,
       message:
-        'Reservation cannot be made. Restaurant is closed on every Tuesday.',
+        'Reservations cannot be made on a Tuesday, when the restaurant is closed.',
     });
   }
   return next();
@@ -143,8 +143,6 @@ module.exports = {
     validateLastName,
     validateMobileNumberFormat,
     validateReservationDateFormat,
-    validateDateNotATuesday,
-    validateDateNotInThePast,
     validateReservationTimeFormat,
     validateReservationPeopleFormat,
     asyncErrorBoundary(create),

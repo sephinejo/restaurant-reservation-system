@@ -57,33 +57,15 @@ function validateReservationDateFormat(req, res, next) {
   });
 }
 
-function validateDateNotATuesday(req, res, next) {
+function validateDateNotInThePast(req, res, next) {
   const { reservationDate } = res.locals;
   const day = new Date(reservationDate).getUTCDay();
   if (day === 2) {
     return next({
       status: 400,
-      message:
-        'Reservation cannot be made. Restaurant is closed on every Tuesday.',
+      message: '',
     });
   }
-  return next();
-}
-
-function validateDateNotInThePast(req, res, next) {
-  const { reservationDate } = res.locals;
-  const { reservation_time } = req.body.data;
-  const currentDateAndTime = Date.now();
-  const reservationDateAndTime = new Date(
-    `${reservationDate} ${reservation_time}`
-  );
-  if (reservationDateAndTime < currentDateAndTime) {
-    return next({
-      status: 400,
-      message: 'Reservations cannot be made in the past.',
-    });
-  }
-  return next();
 }
 
 function validateReservationTimeFormat(req, res, next) {
@@ -143,8 +125,6 @@ module.exports = {
     validateLastName,
     validateMobileNumberFormat,
     validateReservationDateFormat,
-    validateDateNotATuesday,
-    validateDateNotInThePast,
     validateReservationTimeFormat,
     validateReservationPeopleFormat,
     asyncErrorBoundary(create),

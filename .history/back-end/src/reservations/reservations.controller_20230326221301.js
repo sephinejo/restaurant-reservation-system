@@ -64,7 +64,7 @@ function validateDateNotATuesday(req, res, next) {
     return next({
       status: 400,
       message:
-        'Reservation cannot be made. Restaurant is closed on every Tuesday.',
+        'Reservations cannot be made on a Tuesday, when the restaurant is closed.',
     });
   }
   return next();
@@ -77,13 +77,6 @@ function validateDateNotInThePast(req, res, next) {
   const reservationDateAndTime = new Date(
     `${reservationDate} ${reservation_time}`
   );
-  if (reservationDateAndTime < currentDateAndTime) {
-    return next({
-      status: 400,
-      message: 'Reservations cannot be made in the past.',
-    });
-  }
-  return next();
 }
 
 function validateReservationTimeFormat(req, res, next) {
@@ -143,8 +136,6 @@ module.exports = {
     validateLastName,
     validateMobileNumberFormat,
     validateReservationDateFormat,
-    validateDateNotATuesday,
-    validateDateNotInThePast,
     validateReservationTimeFormat,
     validateReservationPeopleFormat,
     asyncErrorBoundary(create),

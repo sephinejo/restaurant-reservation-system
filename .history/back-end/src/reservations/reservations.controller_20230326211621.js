@@ -1,7 +1,6 @@
 const service = require('./reservations.service');
 const asyncErrorBoundary = require('../errors/asyncErrorBoundary');
 
-// Validation functions
 function hasData(req, res, next) {
   if (req.body.data) {
     return next();
@@ -46,7 +45,7 @@ function validateMobileNumberFormat(req, res, next) {
 function validateReservationDateFormat(req, res, next) {
   const reservationDate = req.body.data.reservation_date;
   const regex = new RegExp(/\d{4}-\d{2}-\d{2}/);
-  res.locals.reservationDate = reservationDate;
+
   if (reservationDate && regex.test(reservationDate)) {
     return next();
   }
@@ -55,35 +54,6 @@ function validateReservationDateFormat(req, res, next) {
     message:
       'Reservation must include a reservation_date in this format: MM/DD/YYYY.',
   });
-}
-
-function validateDateNotATuesday(req, res, next) {
-  const { reservationDate } = res.locals;
-  const day = new Date(reservationDate).getUTCDay();
-  if (day === 2) {
-    return next({
-      status: 400,
-      message:
-        'Reservation cannot be made. Restaurant is closed on every Tuesday.',
-    });
-  }
-  return next();
-}
-
-function validateDateNotInThePast(req, res, next) {
-  const { reservationDate } = res.locals;
-  const { reservation_time } = req.body.data;
-  const currentDateAndTime = Date.now();
-  const reservationDateAndTime = new Date(
-    `${reservationDate} ${reservation_time}`
-  );
-  if (reservationDateAndTime < currentDateAndTime) {
-    return next({
-      status: 400,
-      message: 'Reservations cannot be made in the past.',
-    });
-  }
-  return next();
 }
 
 function validateReservationTimeFormat(req, res, next) {
@@ -143,8 +113,6 @@ module.exports = {
     validateLastName,
     validateMobileNumberFormat,
     validateReservationDateFormat,
-    validateDateNotATuesday,
-    validateDateNotInThePast,
     validateReservationTimeFormat,
     validateReservationPeopleFormat,
     asyncErrorBoundary(create),
