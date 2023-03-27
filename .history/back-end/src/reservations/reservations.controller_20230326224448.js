@@ -77,6 +77,9 @@ function validateDateNotInThePast(req, res, next) {
   const reservationDateAndTime = new Date(
     `${reservationDate} ${reservation_time}`
   );
+  console.log(currentDateAndTime);
+  console.log(reservationDateAndTime);
+
   if (reservationDateAndTime < currentDateAndTime) {
     return next({
       status: 400,
