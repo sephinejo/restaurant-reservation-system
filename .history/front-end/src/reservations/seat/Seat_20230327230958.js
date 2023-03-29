@@ -22,11 +22,11 @@ export default function Seat() {
     return () => abortController.abort();
   }
 
-  const tableAssignmentOptions = tables.map((table) => {
+  const tableAssignmentOptions = tables.map((table) => (
     <option value={table.table_id} key={table.table_id}>
       {table.table_name} - {table.capacity}
-    </option>;
-  });
+    </option>
+  ));
 
   function changeHandler({ target: { name, value } }) {
     setTableAssignment((prev) => ({
@@ -58,7 +58,7 @@ export default function Seat() {
 
   return (
     <div>
-      <h1>{`Reservation ID: {${reservation_id}}`}</h1>
+      <h1>Reservation ID: {reservation_id}</h1>
       <ErrorAlert error={error} />
       <form onSubmit={submitHandler}>
         <div>
