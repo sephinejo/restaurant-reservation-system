@@ -173,15 +173,3 @@ export async function finishSeat(tableId, signal) {
   const url = `${API_BASE_URL}/tables/${tableId}/seat`;
   return await fetchJson(url, { method: 'DELETE', headers, signal }, {});
 }
-
-// Search Reservation
-export async function searchReservations(mobile_number, signal) {
-  const url = new URL(
-    `${API_BASE_URL}/reservations?mobile_number=${mobile_number}`
-  );
-  return await fetchJson(url, {
-    method: 'GET',
-    headers,
-    signal,
-  });
-}

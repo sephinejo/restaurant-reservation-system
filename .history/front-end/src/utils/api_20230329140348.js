@@ -174,7 +174,7 @@ export async function finishSeat(tableId, signal) {
   return await fetchJson(url, { method: 'DELETE', headers, signal }, {});
 }
 
-// Search Reservation
+// Search Reservations
 export async function searchReservations(mobile_number, signal) {
   const url = new URL(
     `${API_BASE_URL}/reservations?mobile_number=${mobile_number}`

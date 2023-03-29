@@ -7,7 +7,6 @@ import { today } from '../utils/date-time';
 import CreateReservation from '../reservations/new/CreateReservation';
 import CreateTable from '../tables/CreateTable';
 import AssignSeat from '../reservations/seat/AssignSeat';
-import SearchReservation from '../reservations/search/SearchReservation';
 
 /**
  * Defines all the routes for the application.

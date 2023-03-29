@@ -175,13 +175,13 @@ export async function finishSeat(tableId, signal) {
 }
 
 // Search Reservation
-export async function searchReservations(mobile_number, signal) {
+export async function searchReservation(mobile_number, signal) {
   const url = new URL(
     `${API_BASE_URL}/reservations?mobile_number=${mobile_number}`
   );
   return await fetchJson(url, {
-    method: 'GET',
     headers,
     signal,
+    method: 'GET',
   });
 }

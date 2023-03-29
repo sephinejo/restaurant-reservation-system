@@ -20,16 +20,12 @@ export default function DashboardReservations({ reservations }) {
       )
     ) {
       const abortController = new AbortController();
-      setError(null);
       await updateReservationStatus(
         reservation_id,
         'cancelled',
         abortController.signal
-      )
-        .then(() => {
-          history.push('/');
-        })
-        .catch(setError);
+      );
+      history.push('/');
       return () => abortController.abort();
     }
   }
@@ -78,7 +74,6 @@ export default function DashboardReservations({ reservations }) {
 
   return (
     <div>
-      <ErrorAlert error={error} />
       <table>
         <thead>
           <tr>

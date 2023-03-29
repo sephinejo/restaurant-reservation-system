@@ -78,7 +78,6 @@ export default function DashboardReservations({ reservations }) {
 
   return (
     <div>
-      <ErrorAlert error={error} />
       <table>
         <thead>
           <tr>

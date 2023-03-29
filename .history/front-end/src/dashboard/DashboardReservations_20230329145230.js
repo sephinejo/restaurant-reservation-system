@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { updateReservationStatus } from '../utils/api';
-import ErrorAlert from '../layout/ErrorAlert';
 
 export default function DashboardReservations({ reservations }) {
   const history = useHistory();
-  const [error, setError] = useState(null);
 
   let filteredReservations = reservations.filter((reservation) => {
     return (
@@ -20,16 +18,12 @@ export default function DashboardReservations({ reservations }) {
       )
     ) {
       const abortController = new AbortController();
-      setError(null);
       await updateReservationStatus(
         reservation_id,
         'cancelled',
         abortController.signal
-      )
-        .then(() => {
-          history.push('/');
-        })
-        .catch(setError);
+      );
+      history.push('/');
       return () => abortController.abort();
     }
   }
@@ -75,10 +69,9 @@ export default function DashboardReservations({ reservations }) {
       </tr>
     );
   });
-
+  console.log(filteredReservation);
   return (
     <div>
-      <ErrorAlert error={error} />
       <table>
         <thead>
           <tr>

@@ -25,11 +25,8 @@ export default function DashboardReservations({ reservations }) {
         reservation_id,
         'cancelled',
         abortController.signal
-      )
-        .then(() => {
-          history.push('/');
-        })
-        .catch(setError);
+      );
+      history.push('/');
       return () => abortController.abort();
     }
   }
@@ -78,7 +75,6 @@ export default function DashboardReservations({ reservations }) {
 
   return (
     <div>
-      <ErrorAlert error={error} />
       <table>
         <thead>
           <tr>
