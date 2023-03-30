@@ -147,6 +147,20 @@ function validateTableNotOccupied(req, res, next) {
   }
 }
 
+function isBooked(req, res, next) {
+  if (
+    !res.locals.reservation.status ||
+    res.locals.reservation.status === 'booked'
+  ) {
+    next();
+  } else {
+    next({
+      status: 400,
+      message: `Reservation is ${res.locals.reservation.status}`,
+    });
+  }
+}
+
 // Table Seat Update handler
 async function updateTableSeat(req, res) {
   const { table_id } = res.locals.table;
@@ -201,6 +215,7 @@ module.exports = {
     validateReservationNotSeated,
     validateTableCapacityForReservation,
     validateTableNotOccupied,
+    isBooked,
     asyncErrorBoundary(updateTableSeat),
   ],
   delete: [

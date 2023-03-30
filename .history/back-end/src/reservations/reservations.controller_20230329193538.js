@@ -140,17 +140,6 @@ async function reservationExists(req, res, next) {
   });
 }
 
-function validateCreateStatus(req, res, next) {
-  const data = req.body.data;
-  if (data.status === 'finished' || data.status === 'seated') {
-    next({
-      status: 400,
-      message: `Reservation status cannot be set to ${data.status}.`,
-    });
-  }
-  next();
-}
-
 function validateValidStatus(req, res, next) {
   const { status } = req.body.data;
   const validStatuses = ['booked', 'seated', 'finished', 'cancelled'];
@@ -168,7 +157,6 @@ function validateValidStatus(req, res, next) {
       message: `A reservation cannot be updated if it has a status of ${status}.`,
     });
   }
-
   return next();
 }
 
@@ -180,7 +168,6 @@ function validateStatusIsNotFinished(req, res, next) {
       message: `A ${reservation.status} reservation cannot be updated or cancelled.`,
     });
   }
-
   return next();
 }
 
@@ -255,7 +242,6 @@ module.exports = {
     validateReservationTimeFormat,
     validateTimeFrame,
     validateReservationPeopleFormat,
-    validateCreateStatus,
     asyncErrorBoundary(create),
   ],
   updateStatus: [

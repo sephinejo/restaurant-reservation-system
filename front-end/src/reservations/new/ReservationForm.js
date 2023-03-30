@@ -1,6 +1,13 @@
 import React from 'react';
 
-export default function ReservationForm({ onChange, reservation }) {
+export default function ReservationForm({ reservation, setReservation }) {
+  function changeHandler({ target: { name, value } }) {
+    setReservation((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
   return (
     <div>
       <label htmlFor='first_name'>First Name</label>
@@ -9,7 +16,7 @@ export default function ReservationForm({ onChange, reservation }) {
         name='first_name'
         type='text'
         required
-        onChange={onChange}
+        onChange={changeHandler}
         value={reservation.first_name}
       />
       <label htmlFor='last_name'>Last Name</label>
@@ -18,7 +25,7 @@ export default function ReservationForm({ onChange, reservation }) {
         name='last_name'
         type='text'
         required
-        onChange={onChange}
+        onChange={changeHandler}
         value={reservation.last_name}
       />
       <label htmlFor='mobile_number'>Mobile Number</label>
@@ -29,7 +36,7 @@ export default function ReservationForm({ onChange, reservation }) {
         placeholder='XXX-XXX-XXXX'
         pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
         required
-        onChange={onChange}
+        onChange={changeHandler}
         value={reservation.mobile_number}
       />
       <label htmlFor='reservation_date'>Reservation Date</label>
@@ -40,7 +47,7 @@ export default function ReservationForm({ onChange, reservation }) {
         placeholder='YYYY-MM-DD'
         pattern='\d{4}-\d{2}-\d{2}'
         required
-        onChange={onChange}
+        onChange={changeHandler}
         value={reservation.reservation_date}
       />
       <label htmlFor='reservation_time'>Reservation Time</label>
@@ -51,7 +58,7 @@ export default function ReservationForm({ onChange, reservation }) {
         placeholder='HH:MM'
         pattern='[0-9]{2}:[0-9]{2}'
         required
-        onChange={onChange}
+        onChange={changeHandler}
         value={reservation.reservation_time}
       />
       <label htmlFor='people'>Party Size</label>
@@ -62,7 +69,7 @@ export default function ReservationForm({ onChange, reservation }) {
         pattern='[1-6]'
         placeholder='1-6'
         required
-        onChange={onChange}
+        onChange={changeHandler}
         value={reservation.people}
       />
     </div>

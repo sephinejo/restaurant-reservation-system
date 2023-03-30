@@ -140,36 +140,22 @@ async function reservationExists(req, res, next) {
   });
 }
 
-function validateCreateStatus(req, res, next) {
-  const data = req.body.data;
-  if (data.status === 'finished' || data.status === 'seated') {
-    next({
-      status: 400,
-      message: `Reservation status cannot be set to ${data.status}.`,
-    });
+async function validateValidStatus(req, res, next) {
+  const { status } = req.body.data;
+  const { reservation_id } = req.params;
+  const reservation = await service.read(reservation_id);
+  if (reservation.status === 'finished') {
+    next({ status: 400, message: `A finished reservation cannot be updated.` });
+  }
+  if (
+    status !== 'seated' &&
+    status !== 'booked' &&
+    status !== 'finished' &&
+    status !== 'cancelled'
+  ) {
+    return next({ status: 400, message: `Invalid status: ${status}` });
   }
   next();
-}
-
-function validateValidStatus(req, res, next) {
-  const { status } = req.body.data;
-  const validStatuses = ['booked', 'seated', 'finished', 'cancelled'];
-
-  if (req.method === 'POST' && status && status !== 'booked') {
-    next({
-      status: 400,
-      message: `New reservation cannot have status of ${status}.`,
-    });
-  }
-
-  if (req.method === 'PUT' && status && !validStatuses.includes(status)) {
-    next({
-      status: 400,
-      message: `A reservation cannot be updated if it has a status of ${status}.`,
-    });
-  }
-
-  return next();
 }
 
 function validateStatusIsNotFinished(req, res, next) {
@@ -255,7 +241,6 @@ module.exports = {
     validateReservationTimeFormat,
     validateTimeFrame,
     validateReservationPeopleFormat,
-    validateCreateStatus,
     asyncErrorBoundary(create),
   ],
   updateStatus: [

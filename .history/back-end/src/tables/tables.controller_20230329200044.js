@@ -189,6 +189,7 @@ module.exports = {
     validateTableName,
     validateNameLength,
     asyncErrorBoundary(validateNameIsNew),
+    validateReservationNotSeated,
     validateCapacity,
     asyncErrorBoundary(create),
   ],

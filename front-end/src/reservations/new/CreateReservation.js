@@ -20,10 +20,6 @@ export default function CreateReservation() {
     history.goBack();
   }
 
-  function changeHandler({ target: { name, value } }) {
-    setReservation((prev) => ({ ...prev, [name]: value }));
-  }
-
   function submitHandler(e) {
     e.preventDefault();
     const abortController = new AbortController();
@@ -42,7 +38,10 @@ export default function CreateReservation() {
       <ErrorAlert error={error} />
       <div>
         <form onSubmit={submitHandler}>
-          <ReservationForm onChange={changeHandler} reservation={reservation} />
+          <ReservationForm
+            reservation={reservation}
+            setReservation={setReservation}
+          />
           <div>
             <button type='button' onClick={cancelHandler}>
               Cancel

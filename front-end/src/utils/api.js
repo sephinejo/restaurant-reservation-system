@@ -185,3 +185,11 @@ export async function searchReservations(mobile_number, signal) {
     signal,
   });
 }
+
+// Read Reservation
+export async function readReservations(reservation_id, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_id}`;
+  return await fetchJson(url, { method: 'GET', headers, signal }, {})
+    .then(formatReservationDate)
+    .then(formatReservationTime);
+}

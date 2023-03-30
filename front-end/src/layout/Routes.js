@@ -8,6 +8,7 @@ import CreateReservation from '../reservations/new/CreateReservation';
 import CreateTable from '../tables/CreateTable';
 import AssignSeat from '../reservations/seat/AssignSeat';
 import SearchReservation from '../reservations/search/SearchReservation';
+import EditReservation from '../reservations/edit/EditReservation';
 
 /**
  * Defines all the routes for the application.
@@ -31,13 +32,16 @@ function Routes() {
       <Route exact={true} path='/reservations/:reservation_id/seat'>
         <AssignSeat />
       </Route>
+      <Route path='/reservations/:reservation_id/edit'>
+        <EditReservation />
+      </Route>
       <Route exact={true} path='/reservations'>
         <Redirect to={{ pathname: '/dashboard', search: `?date=${today()}` }} />
       </Route>
       <Route path='/tables/new'>
         <CreateTable />
       </Route>
-      <Route paht='/search'>
+      <Route path='/search'>
         <SearchReservation />
       </Route>
       <Route>

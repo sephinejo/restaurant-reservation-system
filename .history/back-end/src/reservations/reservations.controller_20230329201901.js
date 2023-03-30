@@ -140,17 +140,6 @@ async function reservationExists(req, res, next) {
   });
 }
 
-function validateCreateStatus(req, res, next) {
-  const data = req.body.data;
-  if (data.status === 'finished' || data.status === 'seated') {
-    next({
-      status: 400,
-      message: `Reservation status cannot be set to ${data.status}.`,
-    });
-  }
-  next();
-}
-
 function validateValidStatus(req, res, next) {
   const { status } = req.body.data;
   const validStatuses = ['booked', 'seated', 'finished', 'cancelled'];
@@ -255,7 +244,6 @@ module.exports = {
     validateReservationTimeFormat,
     validateTimeFrame,
     validateReservationPeopleFormat,
-    validateCreateStatus,
     asyncErrorBoundary(create),
   ],
   updateStatus: [

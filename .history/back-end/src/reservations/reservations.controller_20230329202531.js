@@ -148,7 +148,6 @@ function validateCreateStatus(req, res, next) {
       message: `Reservation status cannot be set to ${data.status}.`,
     });
   }
-  next();
 }
 
 function validateValidStatus(req, res, next) {
@@ -255,7 +254,6 @@ module.exports = {
     validateReservationTimeFormat,
     validateTimeFrame,
     validateReservationPeopleFormat,
-    validateCreateStatus,
     asyncErrorBoundary(create),
   ],
   updateStatus: [
