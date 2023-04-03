@@ -19,6 +19,7 @@ function Layout() {
           <Menu />
         </div>
         <div className='col'>
+          <img src='' alt='' />
           <Routes />
         </div>
       </div>

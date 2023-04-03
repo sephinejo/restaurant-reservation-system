@@ -12,24 +12,16 @@ export default function DashboardDateButtons({ reservationsDate }) {
   return (
     <div>
       <button
-        className='btn btn-info'
+        className='btn btn-'
         type='button'
         onClick={() => btnHandler(previous(reservationsDate))}
       >
         Previous
       </button>
-      <button
-        className='btn btn-info'
-        type='button'
-        onClick={() => btnHandler(today())}
-      >
+      <button type='button' onClick={() => btnHandler(today())}>
         Today
       </button>
-      <button
-        className='btn btn-info'
-        type='button'
-        onClick={() => btnHandler(next(reservationsDate))}
-      >
+      <button type='button' onClick={() => btnHandler(next(reservationsDate))}>
         Next
       </button>
     </div>

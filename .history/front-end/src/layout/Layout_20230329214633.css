@@ -5,8 +5,6 @@
   min-width: 200px;
 }
 
-h1,
-h4,
-button {
+* {
   font-family: 'Baloo Da 2';
 }

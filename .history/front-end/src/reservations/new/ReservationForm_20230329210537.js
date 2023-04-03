@@ -34,6 +34,7 @@ export default function ReservationForm({ reservation, setReservation }) {
         name='mobile_number'
         type='tel'
         placeholder='XXX-XXX-XXXX'
+        pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
         required
         onChange={changeHandler}
         value={reservation.mobile_number}

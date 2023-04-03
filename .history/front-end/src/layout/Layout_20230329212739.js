@@ -19,6 +19,10 @@ function Layout() {
           <Menu />
         </div>
         <div className='col'>
+          <img
+            src='https://unsplash.com/ko/s/%EC%82%AC%EC%A7%84/restaurant'
+            alt=''
+          />
           <Routes />
         </div>
       </div>

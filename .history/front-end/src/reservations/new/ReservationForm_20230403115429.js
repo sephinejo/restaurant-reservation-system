@@ -1,6 +1,11 @@
 import React from 'react';
+import ErrorAlert from '../../layout/ErrorAlert';
 
-export default function ReservationForm({ reservation, setReservation }) {
+export default function ReservationForm({
+  reservation,
+  setReservation,
+  error,
+}) {
   function changeHandler({ target: { name, value } }) {
     setReservation((prev) => ({
       ...prev,
@@ -10,6 +15,7 @@ export default function ReservationForm({ reservation, setReservation }) {
 
   return (
     <div>
+      <ErrorAlert error={error} />
       <label htmlFor='first_name'>First Name</label>
       <input
         id='first_name'

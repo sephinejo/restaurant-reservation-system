@@ -1,0 +1,10 @@
+.side-bar {
+  background-color: #393a44;
+  min-width: 200px;
+}
+
+@media (max-width: 960px) {
+  .side-bar {
+    padding: 8px;
+  }
+}

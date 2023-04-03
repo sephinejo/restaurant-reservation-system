@@ -1,6 +1,11 @@
 import React from 'react';
+import ErrorAlert from '../../layout/ErrorAlert';
 
-export default function ReservationForm({ reservation, setReservation }) {
+export default function ReservationForm({
+  reservation,
+  setReservation,
+  error,
+}) {
   function changeHandler({ target: { name, value } }) {
     setReservation((prev) => ({
       ...prev,
@@ -10,6 +15,7 @@ export default function ReservationForm({ reservation, setReservation }) {
 
   return (
     <div>
+      <ErrorAlert error={error} />
       <label htmlFor='first_name'>First Name</label>
       <input
         id='first_name'
@@ -34,6 +40,7 @@ export default function ReservationForm({ reservation, setReservation }) {
         name='mobile_number'
         type='tel'
         placeholder='XXX-XXX-XXXX'
+        pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
         required
         onChange={changeHandler}
         value={reservation.mobile_number}
