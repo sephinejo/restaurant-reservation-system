@@ -49,9 +49,7 @@ export default function DashboardReservations({ reservations }) {
         </td>
         <td>
           <div>
-            <Link to={`/reservations/${reservation.reservation_id}/edit`}>
-              Edit
-            </Link>
+            <Link>Edit</Link>
           </div>
           <div>
             <button
@@ -66,9 +64,9 @@ export default function DashboardReservations({ reservations }) {
           </div>
           {reservation.status === 'booked' ? (
             <div>
-              <Link to={`/reservations/${reservation.reservation_id}/seat`}>
+              <a href={`/reservations/${reservation.reservation_id}/seat`}>
                 Seat
-              </Link>
+              </a>
             </div>
           ) : null}
         </td>

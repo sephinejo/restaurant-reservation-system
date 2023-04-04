@@ -66,9 +66,9 @@ export default function DashboardReservations({ reservations }) {
           </div>
           {reservation.status === 'booked' ? (
             <div>
-              <Link to={`/reservations/${reservation.reservation_id}/seat`}>
+              <a href={`/reservations/${reservation.reservation_id}/seat`}>
                 Seat
-              </Link>
+              </a>
             </div>
           ) : null}
         </td>

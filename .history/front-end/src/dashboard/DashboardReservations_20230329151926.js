@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { updateReservationStatus } from '../utils/api';
 import ErrorAlert from '../layout/ErrorAlert';
 
@@ -49,9 +49,9 @@ export default function DashboardReservations({ reservations }) {
         </td>
         <td>
           <div>
-            <Link to={`/reservations/${reservation.reservation_id}/edit`}>
+            <a href={`/reservations/${reservation.reservation_id}/edit`}>
               Edit
-            </Link>
+            </a>
           </div>
           <div>
             <button
@@ -66,9 +66,9 @@ export default function DashboardReservations({ reservations }) {
           </div>
           {reservation.status === 'booked' ? (
             <div>
-              <Link to={`/reservations/${reservation.reservation_id}/seat`}>
+              <a href={`/reservations/${reservation.reservation_id}/seat`}>
                 Seat
-              </Link>
+              </a>
             </div>
           ) : null}
         </td>
