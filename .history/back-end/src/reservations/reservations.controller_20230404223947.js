@@ -33,8 +33,7 @@ function validateLastName(req, res, next) {
 
 function validateMobileNumberFormat(req, res, next) {
   const mobileNumber = req.body.data.mobile_number;
-  const regex = new RegExp(/^[0-9 -]+$/);
-  if (mobileNumber && regex.test(mobileNumber)) {
+  if (mobileNumber) {
     return next();
   }
   next({
